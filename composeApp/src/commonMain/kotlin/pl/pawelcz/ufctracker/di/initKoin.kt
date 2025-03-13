@@ -1,7 +1,8 @@
 package pl.pawelcz.ufctracker.di
 
 import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
+
+typealias KoinAppDeclaration = org.koin.core.KoinApplication.() -> Unit
 
 fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {
