@@ -19,7 +19,13 @@ fun FighterListScreenRoot(
 
     FighterListScreen(
         state = state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                is FighterListAction.OnFighterClick -> onFighterClick()
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
