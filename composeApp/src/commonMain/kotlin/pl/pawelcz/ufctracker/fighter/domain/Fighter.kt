@@ -4,6 +4,7 @@ data class Fighter(
     val id: String,
     val firstName: String,
     val lastName: String,
+    val nickname: String,
     val category: String,
     val placeOfBirth: String,
     val age: Int,
@@ -11,5 +12,6 @@ data class Fighter(
     val weight: Double,
     val wins: Int,
     val losses: Int,
-    val draws: Int
+    val draws: Int,
+    val imageUrl: String
 )

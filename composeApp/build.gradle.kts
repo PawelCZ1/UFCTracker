@@ -52,6 +52,7 @@ kotlin {
                 implementation(libs.koin.compose.viewmodel)
                 implementation(libs.lifecycle.viewmodel)
                 implementation(libs.navigation.compose)
+                implementation(libs.bundles.coil)
             }
         }
     }
@@ -59,7 +60,7 @@ kotlin {
 
 android {
     namespace = "pl.pawelcz.ufctracker"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "pl.pawelcz.ufctracker"
@@ -89,6 +90,7 @@ dependencies {
     implementation(libs.androidx.foundation.android)
     implementation(libs.androidx.ui.text.android)
     implementation(libs.androidx.runtime.android)
+    implementation(libs.androidx.navigation.compose)
     debugImplementation(compose.uiTooling)
 }
 

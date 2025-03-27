@@ -1,6 +1,7 @@
 package pl.pawelcz.ufctracker
 
 import androidx.compose.ui.window.ComposeUIViewController
+import pl.pawelcz.ufctracker.app.App
 import pl.pawelcz.ufctracker.di.initKoin
 
 fun MainViewController() = ComposeUIViewController(
