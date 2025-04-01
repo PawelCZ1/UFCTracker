@@ -8,12 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import pl.pawelcz.ufctracker.UFCTrackerTheme
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterSearchBar
 
 @Preview
 @Composable
 fun FighterSearchBarPreview() {
-    MaterialTheme {
+    UFCTrackerTheme(false) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import pl.pawelcz.ufctracker.UFCTrackerTheme
 import pl.pawelcz.ufctracker.fighter.domain.Fighter
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterListItem
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterSearchBar
@@ -30,11 +31,11 @@ fun FighterListItemPreview() {
         draws = 0,
         imageUrl = "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-05/MAKHACHEV_ISLAM_L_BELT_06-01.png?itok=O8gDxptU"
     )
-    MaterialTheme {
+    UFCTrackerTheme(false) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White)
+                .background(Color(0xFFC1121F).copy(0.2f))
         ) {
             FighterListItem(fighter = fighter) { }
         }
