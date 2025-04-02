@@ -71,7 +71,7 @@ fun FighterListItem(
                 val painter = rememberAsyncImagePainter(
                     model = fighter.imageUrl,
                     onSuccess = {
-                        if (it.painter.intrinsicSize.width > 1 && it.painter.intrinsicSize.height > 1) {
+                        imageLoadResult = if (it.painter.intrinsicSize.width > 1 && it.painter.intrinsicSize.height > 1) {
                             Result.success(it.painter)
                         } else {
                             Result.failure(Exception("Invalid image size"))
