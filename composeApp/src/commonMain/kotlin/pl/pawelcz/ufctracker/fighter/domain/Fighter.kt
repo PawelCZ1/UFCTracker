@@ -6,7 +6,7 @@ data class Fighter(
     val lastName: String,
     val nickname: String,
     val category: String,
-    val placeOfBirth: String,
+    val placeOfBirth: String? = null,
     val age: Int,
     val height: Double,
     val weight: Double,

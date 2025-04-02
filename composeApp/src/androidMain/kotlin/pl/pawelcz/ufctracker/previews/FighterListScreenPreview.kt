@@ -1,9 +1,8 @@
 package pl.pawelcz.ufctracker.previews
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import pl.pawelcz.ufctracker.UFCTrackerTheme
+import pl.pawelcz.ufctracker.core.presentation.UFCTrackerTheme
 import pl.pawelcz.ufctracker.fighter.domain.Fighter
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.FighterListScreen
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.FighterListState

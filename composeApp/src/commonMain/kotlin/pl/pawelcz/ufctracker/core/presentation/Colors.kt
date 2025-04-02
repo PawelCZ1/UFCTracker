@@ -1,4 +1,4 @@
-package pl.pawelcz.ufctracker
+package pl.pawelcz.ufctracker.core.presentation
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme

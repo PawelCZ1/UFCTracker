@@ -1,4 +1,4 @@
-package pl.pawelcz.ufctracker
+package pl.pawelcz.ufctracker.core.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

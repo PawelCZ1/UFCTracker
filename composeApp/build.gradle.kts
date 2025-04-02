@@ -36,6 +36,7 @@ kotlin {
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.koin.android)
                 implementation(libs.koin.androidx.compose)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val commonMain by getting {
@@ -57,6 +58,9 @@ kotlin {
                 implementation(libs.bundles.ktor)
                 implementation(libs.kotlinx.serialization.json)
             }
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
