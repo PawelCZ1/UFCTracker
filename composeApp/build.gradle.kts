@@ -98,6 +98,7 @@ dependencies {
     implementation(libs.androidx.ui.text.android)
     implementation(libs.androidx.runtime.android)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.material3.android)
     debugImplementation(compose.uiTooling)
 }
 

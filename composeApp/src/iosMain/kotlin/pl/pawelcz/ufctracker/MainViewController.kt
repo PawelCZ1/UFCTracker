@@ -11,7 +11,5 @@ fun MainViewController() = ComposeUIViewController(
         initKoin()
     }
 ) {
-    App(
-        engine = remember { Darwin.create() }
-    )
+    App()
 }

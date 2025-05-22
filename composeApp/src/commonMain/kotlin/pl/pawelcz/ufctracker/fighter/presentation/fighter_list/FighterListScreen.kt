@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
+import pl.pawelcz.ufctracker.fighter.domain.Fighter
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterList
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterSearchBar
 
@@ -32,7 +33,7 @@ import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.Fighte
 @Composable
 fun FighterListScreenRoot(
     viewModel: FighterListViewModel = koinViewModel(),
-    onFighterClick: () -> Unit,
+    onFighterClick: (Fighter) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -41,7 +42,7 @@ fun FighterListScreenRoot(
         state = state,
         onAction = { action ->
             when (action) {
-                is FighterListAction.OnFighterClick -> onFighterClick()
+                is FighterListAction.OnFighterClick -> onFighterClick(action.fighter)
                 else -> Unit
             }
             viewModel.onAction(action)
