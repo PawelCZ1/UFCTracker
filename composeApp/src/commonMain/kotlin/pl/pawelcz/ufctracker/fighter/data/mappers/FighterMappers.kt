@@ -18,7 +18,11 @@ fun Map<String, FighterDetailsDto>.toFighterList(): List<Fighter> {
             wins = details.wins,
             losses = details.losses,
             draws = details.draws,
-            imageUrl = details.imageUrl
+            imageUrl = details.imageUrl,
+            trainsAt = details.trainsAt,
+            fightingStyle = details.fightingStyle,
+            octagonDebut = details.octagonDebut,
+            status = details.status
         )
     }
 }

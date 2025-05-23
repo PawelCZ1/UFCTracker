@@ -11,7 +11,7 @@ import pl.pawelcz.ufctracker.fighter.data.network.RemoteFighterDataSource
 import pl.pawelcz.ufctracker.fighter.data.repository.DefaultFighterRepository
 import pl.pawelcz.ufctracker.fighter.domain.FighterRepository
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.FighterListViewModel
-import pl.pawelcz.ufctracker.fighter.presentation.selected_fighter.SelectedFighterViewModel
+import pl.pawelcz.ufctracker.fighter.presentation.fighter_details.FighterDetailsViewModel
 
 expect val platformModule: Module
 
@@ -24,7 +24,7 @@ val fighterModule = module {
     single<RemoteFighterDataSource> { KtorRemoteFighterDataSource(httpClient = get()) }
     single<FighterRepository> { DefaultFighterRepository(remoteFighterDataSource = get()) }
     viewModel { FighterListViewModel(fighterRepository = get()) }
-    viewModel { SelectedFighterViewModel() }
+    viewModel { FighterDetailsViewModel() }
 }
 
 

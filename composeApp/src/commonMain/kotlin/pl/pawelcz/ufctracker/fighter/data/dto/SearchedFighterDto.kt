@@ -16,5 +16,9 @@ data class SearchedFighterDto(
     val wins: Int,
     val losses: Int,
     val draws: Int,
-    @SerialName("imgUrl") val imageUrl: String
+    @SerialName("imgUrl") val imageUrl: String,
+    val trainsAt: String? = null,
+    val fightingStyle: String? = null,
+    val octagonDebut: String,
+    val status: String? = null
 )

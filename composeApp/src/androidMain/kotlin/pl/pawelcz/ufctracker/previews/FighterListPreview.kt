@@ -28,7 +28,11 @@ fun FighterListPreview(){
             wins = 26,
             losses = 1,
             draws = 0,
-            imageUrl = ""
+            imageUrl = "",
+            octagonDebut = "May. 23, 2015",
+            trainsAt = "AKA (American Kickboxing Academy) San Jose",
+            fightingStyle = "Sambo",
+            status = "Active"
         )
     }
     UFCTrackerTheme(false) {

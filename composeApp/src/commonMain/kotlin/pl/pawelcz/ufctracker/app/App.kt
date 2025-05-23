@@ -7,19 +7,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import io.ktor.client.engine.HttpClientEngine
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
-import pl.pawelcz.ufctracker.core.data.HttpClientFactory
-import pl.pawelcz.ufctracker.core.presentation.MainScreen
 import pl.pawelcz.ufctracker.core.presentation.UFCTrackerTheme
-import pl.pawelcz.ufctracker.fighter.data.network.KtorRemoteFighterDataSource
-import pl.pawelcz.ufctracker.fighter.data.repository.DefaultFighterRepository
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.FighterListScreenRoot
 import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.FighterListViewModel
-import pl.pawelcz.ufctracker.fighter.presentation.selected_fighter.FighterDetailsScreenRoot
-import pl.pawelcz.ufctracker.fighter.presentation.selected_fighter.SelectedFighterViewModel
+import pl.pawelcz.ufctracker.fighter.presentation.fighter_details.FighterDetailsScreenRoot
+import pl.pawelcz.ufctracker.fighter.presentation.fighter_details.FighterDetailsViewModel
 
 
 @OptIn(KoinExperimentalAPI::class)
@@ -35,23 +30,26 @@ fun App() {
 
             composable(Route.FighterList.route) {
                 val viewModel: FighterListViewModel = koinViewModel()
-                val selectedFighterViewModel =
-                    it.sharedKoinViewModel<SelectedFighterViewModel>(navController)
+                val fighterDetailsViewModel =
+                    it.sharedKoinViewModel<FighterDetailsViewModel>(navController)
 
 
                 FighterListScreenRoot(
                     viewModel = viewModel,
                     onFighterClick = { fighter ->
-                        selectedFighterViewModel.onSelectFighter(fighter)
+                        fighterDetailsViewModel.onSelectFighter(fighter)
                         navController.navigate(Route.FighterDetails.route)
                     }
                 )
             }
             composable(Route.FighterDetails.route) {
-                val selectedFighterViewModel =
-                    it.sharedKoinViewModel<SelectedFighterViewModel>(navController)
+                val fighterDetailsViewModel =
+                    it.sharedKoinViewModel<FighterDetailsViewModel>(navController)
                 FighterDetailsScreenRoot(
-                    viewModel = selectedFighterViewModel,
+                    viewModel = fighterDetailsViewModel,
+                    onBackClick = {
+                        navController.popBackStack()
+                    }
                 )
             }
         }

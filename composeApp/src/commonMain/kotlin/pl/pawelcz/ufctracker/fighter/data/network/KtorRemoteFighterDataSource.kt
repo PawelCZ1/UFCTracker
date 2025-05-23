@@ -21,7 +21,7 @@ class KtorRemoteFighterDataSource(
             httpClient.get(urlString = "$BASE_URL/fighters") {
                 parameter("q", query)
                 parameter("limit", resultLimit)
-                parameter("fields", "key,name,nickname,category,placeOfBirth,age,height,weight,wins,losses,draws,imgUrl")
+                parameter("fields", "key,name,nickname,category,placeOfBirth,age,height,weight,wins,losses,draws,imgUrl,trainsAt,fightingStyle,octagonDebut,status")
             }
         }
 

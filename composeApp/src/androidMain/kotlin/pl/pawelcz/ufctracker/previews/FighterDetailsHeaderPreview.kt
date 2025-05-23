@@ -9,8 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import pl.pawelcz.ufctracker.core.presentation.UFCTrackerTheme
 import pl.pawelcz.ufctracker.fighter.domain.Fighter
-import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterListItem
-import pl.pawelcz.ufctracker.fighter.presentation.selected_fighter.components.FighterDetailsHeader
+import pl.pawelcz.ufctracker.fighter.presentation.fighter_details.components.FighterDetailsHeader
 
 @Preview
 @Composable
@@ -28,7 +27,11 @@ fun FighterDetailsHeaderPreview() {
         wins = 26,
         losses = 1,
         draws = 0,
-        imageUrl = "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-05/MAKHACHEV_ISLAM_L_BELT_06-01.png?itok=O8gDxptU"
+        imageUrl = "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-05/MAKHACHEV_ISLAM_L_BELT_06-01.png?itok=O8gDxptU",
+        octagonDebut = "May. 23, 2015",
+        trainsAt = "AKA (American Kickboxing Academy) San Jose",
+        fightingStyle = "Sambo",
+        status = "Active"
     )
     UFCTrackerTheme(false) {
         Box(

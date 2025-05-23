@@ -13,5 +13,9 @@ data class Fighter(
     val wins: Int,
     val losses: Int,
     val draws: Int,
-    val imageUrl: String
+    val imageUrl: String,
+    val trainsAt: String? = null,
+    val fightingStyle: String? = null,
+    val octagonDebut: String,
+    val status: String? = null
 )

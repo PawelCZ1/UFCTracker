@@ -9,11 +9,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import pl.pawelcz.ufctracker.core.presentation.UFCTrackerTheme
 import pl.pawelcz.ufctracker.fighter.domain.Fighter
-import pl.pawelcz.ufctracker.fighter.presentation.fighter_list.components.FighterListItem
+import pl.pawelcz.ufctracker.fighter.presentation.fighter_details.components.FighterDetailsBioSection
+import pl.pawelcz.ufctracker.fighter.presentation.fighter_details.components.FighterDetailsFighterProfileSection
 
 @Preview
 @Composable
-fun FighterListItemPreview() {
+fun FighterDetailsFighterProfileSectionPreview() {
     val fighter = Fighter(
         id = "islam-makhachev",
         firstName = "Islam",
@@ -39,7 +40,7 @@ fun FighterListItemPreview() {
                 .fillMaxWidth()
                 .background(Color(0xFFC1121F).copy(0.2f))
         ) {
-            FighterListItem(fighter = fighter) { }
+            FighterDetailsFighterProfileSection(fighter)
         }
     }
 }
