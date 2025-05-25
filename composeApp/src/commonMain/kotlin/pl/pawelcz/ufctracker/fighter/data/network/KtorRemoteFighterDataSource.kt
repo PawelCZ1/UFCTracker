@@ -14,12 +14,10 @@ class KtorRemoteFighterDataSource(
     private val httpClient: HttpClient
 ): RemoteFighterDataSource {
     override suspend fun searchFighters(
-        query: String,
         resultLimit: Int?
     ): Result<Map<String, FighterDetailsDto>, DataError.Remote> {
         return safeCall {
             httpClient.get(urlString = "$BASE_URL/fighters") {
-                parameter("q", query)
                 parameter("limit", resultLimit)
                 parameter("fields", "key,name,nickname,category,placeOfBirth,age,height,weight,wins,losses,draws,imgUrl,trainsAt,fightingStyle,octagonDebut,status")
             }

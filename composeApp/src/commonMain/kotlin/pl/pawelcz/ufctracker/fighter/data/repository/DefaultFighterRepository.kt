@@ -13,7 +13,7 @@ class DefaultFighterRepository(
 ): FighterRepository {
     override suspend fun searchFighters(query: String): Result<List<Fighter>, DataError.Remote> {
         return remoteFighterDataSource
-            .searchFighters(query)
+            .searchFighters()
             .map { results ->
                 results.toFighterList()
             }

@@ -1,21 +1,10 @@
-@file:OptIn(FlowPreview::class)
-
 package pl.pawelcz.ufctracker.fighter.presentation.fighter_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import pl.pawelcz.ufctracker.core.domain.onError
@@ -29,30 +18,22 @@ class FighterListViewModel(
 ) : ViewModel() {
 
     private var cachedFighters = emptyList<Fighter>()
-    private var searchJob: Job? = null
 
     private val _state = MutableStateFlow(FighterListState())
-    val state = _state
-        .onStart {
-            if (cachedFighters.isEmpty()) {
-                observeSearchQuery()
-            }
-        }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000L),
-            _state.value
-        )
+    val state = _state.asStateFlow()
+
+    init {
+        fetchAllFighters()
+    }
 
     fun onAction(action: FighterListAction) {
         when (action) {
-            is FighterListAction.OnFighterClick -> {
-
-            }
+            is FighterListAction.OnFighterClick -> { }
             is FighterListAction.OnSearchQueryChange -> {
                 _state.update {
                     it.copy(searchQuery = action.query)
                 }
+                filterAndUpdateFighters(action.query)
             }
             is FighterListAction.OnTabSelected -> {
                 _state.update {
@@ -62,50 +43,50 @@ class FighterListViewModel(
         }
     }
 
-    private fun observeSearchQuery() {
-        state
-            .map { it.searchQuery }
-            .distinctUntilChanged()
-            .debounce(500L)
-            .onEach { query ->
-                searchJob?.cancel()
-                searchJob = searchFighters(query)
-                when {
-                    query.isBlank() -> {
-                        _state.update {
-                            it.copy(
-                                errorMessage = null,
-                                fighters = cachedFighters
-                            )
-                        }
+    private fun fetchAllFighters() {
+        viewModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
+            fighterRepository
+                .searchFighters("")
+                .onSuccess { fighters ->
+                    cachedFighters = fighters
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            fighters = fighters,
+                            errorMessage = null
+                        )
                     }
                 }
-            }
-            .launchIn(viewModelScope)
+                .onError { error ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = error.toUiText()
+                        )
+                    }
+                }
+        }
     }
 
-    private fun searchFighters(query: String) = viewModelScope.launch {
-        _state.update {
-            it.copy(isLoading = true)
+    private fun filterAndUpdateFighters(query: String) {
+        val filtered = if (query.isBlank()) {
+            cachedFighters
+        } else {
+            filterFightersLocally(query)
         }
-        fighterRepository
-            .searchFighters(query)
-            .onSuccess { fighters ->
-                _state.update {
-                    it.copy(
-                        isLoading = false,
-                        errorMessage = null,
-                        fighters = fighters
-                    )
-                }
-            }
-            .onError { error ->
-                _state.update {
-                    it.copy(
-                        isLoading = false,
-                        errorMessage = error.toUiText()
-                    )
-                }
-            }
+        _state.update {
+            it.copy(
+                fighters = filtered,
+                errorMessage = null
+            )
+        }
+    }
+
+    private fun filterFightersLocally(query: String): List<Fighter> {
+        val q = query.trim().lowercase()
+        return cachedFighters.filter { fighter ->
+            (fighter.firstName.lowercase() + " " + fighter.lastName.lowercase()).contains(q) || fighter.nickname.lowercase().contains(q)
+        }
     }
 }
