@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun FighterSearchBar(
@@ -42,7 +43,7 @@ fun FighterSearchBar(
             onValueChange = onSearchQueryChange,
 //        label = { Text("Search fighters") },
             placeholder = { Text("Search...") },
-            shape = RoundedCornerShape(100),
+            shape = RoundedCornerShape(8.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 cursorColor = MaterialTheme.colorScheme.secondary,
                 focusedBorderColor = MaterialTheme.colorScheme.secondary
@@ -83,7 +84,7 @@ fun FighterSearchBar(
             },
             modifier = modifier
                 .background(
-                    shape = RoundedCornerShape(100),
+                    shape = RoundedCornerShape(8.dp),
                     color = Color.White
                 )
                 .minimumInteractiveComponentSize()

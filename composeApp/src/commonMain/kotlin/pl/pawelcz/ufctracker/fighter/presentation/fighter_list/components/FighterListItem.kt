@@ -46,11 +46,11 @@ fun FighterListItem(
     onClick: () -> Unit
 ) {
     Surface(
-        shape = RoundedCornerShape(32.dp),
+        shape = RoundedCornerShape(8.dp),
         modifier = modifier.clickable {
             onClick()
         },
-        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.2f)
+        color = MaterialTheme.colorScheme.surface
     ) {
         Row(
             modifier = Modifier
@@ -121,7 +121,7 @@ fun FighterListItem(
                         style = MaterialTheme.typography.bodyMedium,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        color = Color.Gray
+                        color = Color.White
                     )
                 }
                 Text(

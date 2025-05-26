@@ -95,10 +95,6 @@ fun FighterListScreen(
                 .weight(1f)
                 .fillMaxWidth(),
             color = Color.White,
-            shape = RoundedCornerShape(
-                topStart = 32.dp,
-                topEnd = 32.dp
-            )
         ) {
             if (state.isLoading) {
                 Box(
