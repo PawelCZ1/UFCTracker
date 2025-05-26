@@ -40,6 +40,9 @@ class FighterListViewModel(
                     it.copy(selectedTabIndex = action.index)
                 }
             }
+            is FighterListAction.OnReloadClick -> {
+                fetchAllFighters()
+            }
         }
     }
 
